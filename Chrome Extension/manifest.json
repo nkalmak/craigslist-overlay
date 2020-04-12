@@ -1,0 +1,13 @@
+{
+	"manifest_version":2,
+	"name": "Craigslist Overlay",
+	"description": "Display comments on Craigslist.",
+	"version": "1",
+	
+	"permissions": [
+		],
+		
+	"icons": {
+    "16": "assets/search.png"
+	}
+}
