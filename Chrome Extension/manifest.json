@@ -4,10 +4,17 @@
 	"description": "Display comments on Craigslist.",
 	"version": "1",
 	
-	"permissions": [
+	"permissions": ["activeTab"
 		],
 		
 	"icons": {
     "16": "assets/search.png"
-	}
+	},
+	"content_scripts": [
+		{
+		  "matches": ["https://*.craigslist.org/*"],
+		  "css": ["myStyles.css"],
+		  "js": ["contentScript.js"]
+		}
+	  ]
 }
