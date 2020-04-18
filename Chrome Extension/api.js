@@ -13,3 +13,21 @@ function getComments(url, callbackFunc) {
             });
         })
 }
+
+let headers = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: null,
+}
+
+function postComment(commentTextObj) {
+    headers.body = JSON.stringify({
+        commentText: commentTextObj,
+        url: 1
+    })
+
+    fetch(apiUrl, headers)
+
+}

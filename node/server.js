@@ -26,37 +26,54 @@ app.use(cors());
 
 var pages = [
 	{
-		url: 1, comment: [
+		url: 1, comments: [
 			"comment1",
-			"comment2",
-			"comment2",
-			"comment2",
-			"comment2",
-			"comment2",
-			"comment435",
-			"comment3",
-			"U FUKING WAT M8"
 		]
 	},
-	{ url: 2, comment: ["comment1", "comment2"] },
-	{ url: 3, comment: ["comment1", "comment2"] },
+	{ url: 2, comments: ["comment1", "comment2","commenasd","asdsadsad"] },
+	{ url: 3, comments: ["comment1", "comment2"] },
 ]
 
 app.get('/comments/:url', (req, res) => {
 	const page = pages.find(c => c.url === parseInt(req.params.url));
-	for (let index = 0; index < 10000; index++) {
-		pages[0].comment.push("new comment")
-
-	}
+	
 	if (!page) res.status(404).send('Comments for the given URL were not found.');
-	res.json(JSON.stringify(page.comment));
+	res.json(JSON.stringify(page.comments));
 
 });
 
 
-{
-	pages.push({ url: 6, comment: ["comment1", "comment2"] })
-}
+
+app.post('/comments', (req, res) => {
+	// if (error) {
+	//   res.status(400).send(result.error.details[0].message);
+	//   return;
+	// }
+	const page = pages.find(c => c.url === parseInt(req.body.url));
+	
+	
+	if (!page) {
+		const newPage = { 
+			comments: [req.body.commentText],
+			url: req.body.url
+		  };
+		  pages.push(newPage);
+	}
+
+	else {
+		page.comments.push(req.body.commentText);
+	}
+
+	res.sendStatus(200)
+
+  });
+  
+
+
+
+// {
+// 	pages.push({ url: 6, comment: ["comment1", "comment2"] })
+// }
 
 // app.get('/addcomment', (req, res) => {
 // 	console.log("Recieved post " + req.body);

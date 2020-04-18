@@ -14,7 +14,7 @@
 		{
 		  "matches": ["https://*.craigslist.org/*"],
 		  "css": ["myStyles.css"],
-		  "js": ["contentScript.js","ericapi.js"]
+		  "js": ["contentScript.js","api.js"]
 		}
 	  ]
 }

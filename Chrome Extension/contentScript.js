@@ -9,7 +9,7 @@ function setupApp() {
     let submitElem = document.getElementById("submit-button")
     submitElem.addEventListener("click", () => {
         let inputElem = document.getElementById("add-comment-textbox")
-        createComment(inputElem.value)
+        postComment(inputElem.value)
     });
 
 
