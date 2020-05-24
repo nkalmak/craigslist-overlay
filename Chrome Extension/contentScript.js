@@ -4,32 +4,31 @@ window.onload = setupApp
 
 function setupApp() {
 
+    let commentID = 25 
+
 
     createUserControls();
     let submitElem = document.getElementById("submit-button")
-    submitElem.addEventListener("click", () => {
+    submitElem.addEventListener("click", () => { 
         let inputElem = document.getElementById("add-comment-textbox")
-        postComment(inputElem.value)
+        postComment(inputElem.value, url, commentID)
+        commentID++
     });
 
 
 
-    // // Get page url
-    // chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-    //     // let url = tabs[0].url;
-    let url = 1;
-    //     // use `url` here inside the callback because it's asynchronous!
+    // Get pageID
+    
+    let url = JSON.parse(document.getElementsByClassName("postinginfo")[1].innerHTML.slice(9,19));
+    
+    // use `url` here inside the callback because it's asynchronous!
 
 
     getComments(url, (comments) => {
         for (let index = 0; index < comments.length; index++) {
-            createComment(String(comments[index]))
+            createComment(String(comments[index].comment_value))
         }
     });
-
-    // });
-
-
 
     // Get existing comments for the page
 }
@@ -75,15 +74,15 @@ function createUserControls() {
 
 // This returns the parent node of a list of comments (<div> or <p>)
 
-function addComment(url) {
-    fetch
-}
+// function addComment(url) {
+//     fetch
+// }
 
-// Queries api for comments for this url
-function fetchComments(url) {
-    fetch("http://localhost/getcomments")
+// // Queries api for comments for this url
+// function fetchComments(url) {
+//     fetch("http://localhost/getcomments")
 
-}
+// }
 
 function createComment(commentStr) {
 
@@ -98,6 +97,6 @@ function createComment(commentStr) {
 
 }
 
-function populateComments() {
+// function populateComments() {
 
-}
+// }

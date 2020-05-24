@@ -1,15 +1,12 @@
 const apiUrl = 'http://localhost:8080/comments/'
 
 
-
-
 function getComments(url, callbackFunc) {
-    console.log("Here1")
     fetch(apiUrl + url)
         .then((res) => {
             res.json().then(function (data) {
-                console.log(data);
-                callbackFunc(JSON.parse(data))
+                callbackFunc(data)
+                console.log(data)
             });
         })
 }
@@ -22,12 +19,12 @@ let headers = {
     body: null,
 }
 
-function postComment(commentTextObj) {
+function postComment(commentTextObj, url, commentID) {
     headers.body = JSON.stringify({
         commentText: commentTextObj,
-        url: 1
+        url: url,
+        commentID: commentID
     })
 
     fetch(apiUrl, headers)
-
 }
