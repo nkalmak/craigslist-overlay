@@ -4,17 +4,12 @@ window.onload = setupApp
 
 function setupApp() {
 
-    let commentID = 25 
-
-
     createUserControls();
     let submitElem = document.getElementById("submit-button")
     submitElem.addEventListener("click", () => { 
         let inputElem = document.getElementById("add-comment-textbox")
-        postComment(inputElem.value, url, commentID)
-        commentID++
+        postComment(inputElem.value, url, loadComments)
     });
-
 
 
     // Get pageID
@@ -24,16 +19,17 @@ function setupApp() {
     // use `url` here inside the callback because it's asynchronous!
 
 
-    getComments(url, (comments) => {
-        for (let index = 0; index < comments.length; index++) {
-            createComment(String(comments[index].comment_value))
-        }
-    });
-
+    getComments(url, loadComments);
+    
     // Get existing comments for the page
 }
 
-
+function loadComments(comments){
+    document.getElementById("comment-section").innerHTML = ""
+    for (let index = 0; index < comments.length; index++) {
+        createComment(String(comments[index].comment_value))
+}
+}
 
 function createUserControls() {
 
@@ -52,10 +48,6 @@ function createUserControls() {
     let commentSection = document.createElement("SECTION")
     commentSection.id = "comment-section"
 
-    //parent
-    //// beforeElem
-    //// we want to insert here
-    //// afterElem (beforeElem.nextsibling)
 
     let beforeElem = document.getElementById("postingbody").parentNode
     let afterElem = beforeElem.nextSibling
@@ -70,20 +62,6 @@ function createUserControls() {
 }
 
 
-
-
-// This returns the parent node of a list of comments (<div> or <p>)
-
-// function addComment(url) {
-//     fetch
-// }
-
-// // Queries api for comments for this url
-// function fetchComments(url) {
-//     fetch("http://localhost/getcomments")
-
-// }
-
 function createComment(commentStr) {
 
     let commentSection = document.getElementById("comment-section")
@@ -96,7 +74,3 @@ function createComment(commentStr) {
 
 
 }
-
-// function populateComments() {
-
-// }

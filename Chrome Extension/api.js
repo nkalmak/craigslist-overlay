@@ -19,12 +19,17 @@ let headers = {
     body: null,
 }
 
-function postComment(commentTextObj, url, commentID) {
+function postComment(commentTextObj, url, callbackFunc) {
     headers.body = JSON.stringify({
         commentText: commentTextObj,
         url: url,
-        commentID: commentID
     })
-
+    
     fetch(apiUrl, headers)
+        .then((res) => {
+            res.json().then(function (data) {
+                callbackFunc(data)
+                console.log(data)
+            });
+    })
 }
