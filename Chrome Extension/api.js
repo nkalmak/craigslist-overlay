@@ -1,4 +1,5 @@
-const apiUrl = 'http://localhost:8080/comments/'
+// const apiUrl = 'http://localhost:8080/comments/'
+const apiUrl = 'https://api.kelownavegan.ca/comments/'
 
 
 function getComments(url, callbackFunc) {
